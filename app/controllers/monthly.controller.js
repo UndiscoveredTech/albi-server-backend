@@ -2,6 +2,8 @@ const Monthly = require('../models/monthly.model');
 const StaticMonth = require('../models/staticMonth.model');
 
 const getList = async (req, res) => {
+    
+
     try {
         const monthly = await Monthly.find();
         res.json(monthly);
@@ -9,6 +11,10 @@ const getList = async (req, res) => {
         res.json({ message: err });
     }
 }
+
+
+
+
 
 //Get single 
 const getSingle = async (req, res) => {
@@ -27,6 +33,7 @@ const addCalculationToMonthly = async (req, res) => {
     let listOfCalculations = [];
     if(monthYear){
         const monthYear1 = await Monthly.findOne({'monthYear': monthYear});
+        console.log(monthYear1);
         listOfCalculations = monthYear1.calculations;
         if(listOfCalculations != []){
             listOfCalculations.every(function(x) {

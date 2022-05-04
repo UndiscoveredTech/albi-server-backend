@@ -1,17 +1,40 @@
 // const mongoose = require("mongoose");
 
 const Calculation  = {
-    monthlyGrossSalary: Number,
+    monthlyNetSalary: Number,
+    grossOfNet: Number,
     hourlyWage: Number,
     normalWorkingHours: Number,
-    nightWorkingHoursDuringWeek: Number,
-    overtimeDuringWeek: Number,
+    overtimeDuringWeek25: Number,
+    overtimeDuringWeek50: Number,
+    weekWorkinghours19_20: Number,
     workingHoursOnWeekend: Number,
-    nightWorkingHoursDuringWeekend: Number,
-    overtimeDuringWeekend: Number,
+    overtimeWeekend: Number,
     totalPaidDays: Number,
+    paidHoliday: Number,
     grossSalaryAll: Number,
-    levelOfInsurance: Number,
+    bonusBruto: Number,
+    brutoOfNewNetValue: Number,
+    levelOfSocInsurance: Number,
+    socInsurance: Number,
+    healthInsurance: Number,
+    totalInsurance: Number,
+    socInsuranceCOM: Number,
+    healthInsuranceCOM: Number,
+    totalInsuranceCOM: Number,
+    salaryBeforeIncomeLEK: Number,
+    incomeTax: Number,
+    netSalaryCOMAll: Number,
+    netSalaryCOMAEuro: Number,
+    netSalaryPlusBonus: Number,
+    costOfEmployer: Number,
+    agencyComision: Number,
+    totalWithoutVAT: Number,
+    VAT: Number,
+    totalWithVAT: Number,
+  
+    
+    exchangeRate: Number,
     user_id: String
 }
 
