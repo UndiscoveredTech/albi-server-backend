@@ -35,6 +35,7 @@ const Calculation  = {
   
     
     exchangeRate: Number,
+    emploeyeeName: String,
     user_id: String
 }
 
