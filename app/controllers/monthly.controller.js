@@ -92,6 +92,7 @@ const getCalculationForUserAndYearMonthService = async (monthyear,userId) => {
         const monthlyObject = await Monthly.findOne({monthYear: monthyear});
         let listOfCalculations = monthlyObject.calculations;
         let calculationForUser = listOfCalculations.find(item => item.user_id.toString() === userId.toString())
+
         return calculationForUser;
       } catch (err) {
         return null

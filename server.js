@@ -47,6 +47,9 @@ app.use('/employee', monthlyRoutes);
 const staticMonthRoutes = require("./app/routes/staticmonth.routes");
 app.use('/staticmonth', staticMonthRoutes);
 
+const settings = require("./app/routes/settings.routes");
+app.use('/settings', settings);
+
 
 const db = require("./app/models");
 const Role = db.role;

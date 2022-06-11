@@ -10,7 +10,12 @@ router.get('/', companyController.getCompaniesList);
 router.post('/', companyController.insertCompany);
 
 //get specific company
-router.get('/:companyId', companyController.getSingleCompany);
+// router.get('/:companyId', companyController.getSingleCompany);
+
+//get specific company data users for companyId and selectedMonthId
+router.get('/:companyId/:selectedMonthId', companyController.getSingleCompanyByMonthId);
+
+
 
 //delete specific company
 router.delete('/:companyId', companyController.deleteCompany);

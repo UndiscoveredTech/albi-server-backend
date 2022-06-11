@@ -42,8 +42,11 @@ const getSingleEmployee = async (req, res) => {
 const insertEmployee = async (req, res) => {
   const employee = new Employee({
     name: req.body.name,
-    email: req.body.email,
-    company: req.body.company
+    bankaccount: req.body.bankaccount,
+    company: req.body.company,
+    companyName: req.body.companyName,
+
+
   });
   try {
     const savedEmployee = await employee.save()
@@ -100,7 +103,7 @@ const updateEmployee = async (req, res) => {
       {
         $set: {
           name: req.body.name,
-          email: req.body.email,
+          bankaccount: req.body.bankaccount,
           company: req.body.company
         }
       }
