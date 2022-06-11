@@ -4,6 +4,7 @@ const Monthly = require('../models/monthly.model');
 var uniqueFilename = require('unique-filename');
 
 
+
  const generateExcelFile = async (req, res) => { 
     const workbook = new excelJS.Workbook();  // Create a new workbook
     const worksheet = workbook.addWorksheet('emploeyeeName'); // New Worksheet
@@ -88,27 +89,37 @@ var uniqueFilename = require('unique-filename');
   
 //   worksheet.mergeCells('A1:F1');
 
-worksheet.addRow({}).commit();
-worksheet.addRow({}).commit();
+// worksheet.addRow({}).commit();
+// worksheet.addRow({}).commit();
 
-worksheet.addRow({}).commit();
+// worksheet.addRow({}).commit();
 
-worksheet.getRow(1).eachCell({ includeEmpty: true }, function(cell) {
-    worksheet.getCell(cell.address).fill = {
-      type: 'pattern',
-      pattern: 'gray125',
-    }
-  })
-
-  worksheet.addRow({}).commit();
-
-  worksheet.addRow({}).commit();
-
-  worksheet.addRow({}).commit();
+// worksheet.getRow(1).eachCell({ includeEmpty: true }, function(cell) {
+//     worksheet.getCell(cell.address).fill = {
+//       type: 'pattern',
+//       pattern: 'gray125',
+//     }
+//   })
 
 let counter = 1;
-  calculations.forEach((user) => {
-  
+let totalObject;
+totalObject = {
+  'emploeyeeName': "Total"
+}
+  calculations.forEach((user,index) => {
+
+    user['index'] = (index + 1);
+    Object.keys(user).map( (key, index)  => {
+      if(key !== "emploeyeeName"){
+        if(!totalObject.hasOwnProperty(key)){
+            totalObject[key] = parseFloat(user[key]);
+        } else{
+          totalObject[key] = parseFloat(totalObject[key]) + parseFloat(user[key]);
+        }
+      }
+      
+
+    });
     // user.user_id = counter;
     worksheet.addRow(user); // Add data in worksheet
     counter++;
@@ -123,6 +134,23 @@ let counter = 1;
     
     })
   });
+
+
+  totalObject["index"] = calculations.length + 1;
+  let rowTotal = worksheet.addRow(totalObject); // Add data in worksheet
+  rowTotal.font = {
+    bold: true
+  }
+    counter++;
+    worksheet.columns.forEach(column => {
+      column.border = {
+        top: {style:'thin'},
+        left: {style:'thin'},
+        bottom: {style:'thin'},
+        right: {style:'thin'}
+      };
+    
+    })
   
   
   worksheet.getRow(1).eachCell((cell) => {
@@ -164,6 +192,10 @@ let counter = 1;
     }
   };
 
+
+  createTotalObject = () => {
+
+  }
 
   module.exports = {
     generateExcelFile
