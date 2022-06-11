@@ -99,6 +99,17 @@ const getCalculationForUserAndYearMonthService = async (monthyear,userId) => {
       }
 }
 
+
+const getCalculationForYearMonthService = async (monthyear) => {
+    try {
+        const monthlyObject = await Monthly.findOne({monthYear: monthyear});
+        let listOfCalculations = monthlyObject.calculations;
+        return listOfCalculations;
+      } catch (err) {
+        return null
+      }
+}
+
 const updateCompany = async (req, res) => {
     try {
         const updateCompany = await Company.updateOne(
@@ -129,4 +140,4 @@ const deleteCompany = async (req, res) => {
 
 
 
-module.exports = { getList, deleteCompany, addCalculationToMonthly, updateCompany, getCalculationForUserAndYearMonthService,getCalculationForUserAndYearMonth,getSingle};
+module.exports = { getList, deleteCompany, addCalculationToMonthly, updateCompany, getCalculationForUserAndYearMonthService,getCalculationForUserAndYearMonth,getCalculationForYearMonthService,getSingle};

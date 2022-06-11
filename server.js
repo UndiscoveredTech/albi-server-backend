@@ -7,6 +7,11 @@ const dbConfig = require("./app/config/db.config");
 
 const app = express();
 
+
+const schedule = require('node-schedule');
+
+
+
 var corsOptions = {
   origin: "http://localhost:4200"
 };
@@ -51,7 +56,16 @@ const settings = require("./app/routes/settings.routes");
 app.use('/settings', settings);
 
 
+//First cron job 
+const rule = new schedule.RecurrenceRule();
+rule.date = 1;
+
+const job = schedule.scheduleJob(rule, function(){
+  generateDataForNewMonth();
+});
+
 const db = require("./app/models");
+const { generateDataForNewMonth } = require("./app/services/cronJob");
 const Role = db.role;
 
 db.mongoose
